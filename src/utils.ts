@@ -248,9 +248,9 @@ function forEach(obj:Array<any> | any, fn:Function) {
  * @param {Object} obj1 Object to merge
  * @returns {Object} Result of all merge properties
  */
-function merge(/* obj1, obj2, obj3, ... */) {
-  var result = {};
-  function assignValue(val, key) {
+function merge(...args:any) {
+  var result:any = {};
+  function assignValue(val:any, key:any) {
     if (typeof result[key] === 'object' && typeof val === 'object') {
       result[key] = merge(result[key], val);
     } else {
@@ -258,8 +258,8 @@ function merge(/* obj1, obj2, obj3, ... */) {
     }
   }
 
-  for (var i = 0, l = arguments.length; i < l; i++) {
-    forEach(arguments[i], assignValue);
+  for (var i = 0 ; i < args.length; i++) {
+    forEach(args[i], assignValue);
   }
   return result;
 }
@@ -272,9 +272,9 @@ function merge(/* obj1, obj2, obj3, ... */) {
  * @param {Object} obj1 Object to merge
  * @returns {Object} Result of all merge properties
  */
-function deepMerge(/* obj1, obj2, obj3, ... */) {
-  var result = {};
-  function assignValue(val, key) {
+function deepMerge(...args:Array<any>) {
+  var result:any = {};
+  function assignValue(val:any, key:any) {
     if (typeof result[key] === 'object' && typeof val === 'object') {
       result[key] = deepMerge(result[key], val);
     } else if (typeof val === 'object') {
@@ -284,7 +284,7 @@ function deepMerge(/* obj1, obj2, obj3, ... */) {
     }
   }
 
-  for (var i = 0, l = arguments.length; i < l; i++) {
+  for (var i:Number = 0, l:Array<any> = args.length; i < l; i++) {
     forEach(arguments[i], assignValue);
   }
   return result;
