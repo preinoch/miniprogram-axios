@@ -253,7 +253,7 @@ function merge(...args:any) {
   function assignValue(val:any, key:any) {
     if (typeof result[key] === 'object' && typeof val === 'object') {
       result[key] = merge(result[key], val);
-    } else {
+    } else { 
       result[key] = val;
     }
   }
@@ -284,8 +284,8 @@ function deepMerge(...args:Array<any>) {
     }
   }
 
-  for (var i:Number = 0, l:Array<any> = args.length; i < l; i++) {
-    forEach(arguments[i], assignValue);
+  for (var i:number = 0, l:number = args.length; i < l; i++) {
+    forEach(args[i], assignValue);
   }
   return result;
 }
@@ -298,8 +298,8 @@ function deepMerge(...args:Array<any>) {
  * @param {Object} thisArg The object to bind function to
  * @return {Object} The resulting value of object a
  */
-function extend(a, b, thisArg) {
-  forEach(b, function assignValue(val, key) {
+function extend(a:any, b:any, thisArg:any) {
+  forEach(b, function assignValue(val:any, key:any) {
     if (thisArg && typeof val === 'function') {
       a[key] = bind(val, thisArg);
     } else {
