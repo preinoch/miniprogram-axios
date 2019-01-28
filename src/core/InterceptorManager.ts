@@ -1,4 +1,6 @@
 'use strict';
+import * as utils from '../utils'
+
 class InterceptorManager {
   handlers:Array<any> = [];
 
@@ -10,10 +12,13 @@ class InterceptorManager {
     return this.handlers.length-1
   }
 
-  forEach() {
-    
+  forEach(fn:Function) {
+    utils.forEach(this.handlers, function forEachHandler(h:any) {
+      if (h !== null) {
+        fn(h);
+      }
+    })
   }
 }
-
 
 export default InterceptorManager;
